@@ -1,0 +1,68 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 01_Task_TargetUrl_API
+  x-ibm-name: 01_task_targeturl_api
+basePath: /01_task_targeturl_api/v1
+x-ibm-configuration:
+  properties:
+    target-url:
+      value: https://jsonplaceholder.typicode.com/users
+      description: URL of the proxy policy
+      encoded: false
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: GET
+          target-url: $(target-url)
+          follow-redirects: false
+          timeout: 60
+          parameter-control:
+            type: allowlist
+            values: []
+          header-control:
+            type: blocklist
+            values: []
+          inject-proxy-headers: true
+          persistent-connection: true
+          backend-type: json
+    finally: []
+    catch: []
+  activity-log:
+    enabled: true
+    success-content: activity
+    error-content: payload
+paths:
+  /user:
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientID: []
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters: {}
+definitions: {}
