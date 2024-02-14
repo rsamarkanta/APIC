@@ -1,0 +1,30 @@
+info:
+  version: 1.0.0
+  title: 06_Prod
+  name: 06_prod
+gateways:
+  - datapower-api-gateway
+plans:
+  default-plan:
+    title: Default Plan
+    description: Default Plan
+    rate-limits:
+      default:
+        value: 100/1hour
+    apis:
+      03_show_all_user1.0.0: {}
+apis:
+  03_show_all_user1.0.0:
+    $ref: 03_show_all_user_1.0.0.yaml
+visibility:
+  view:
+    type: public
+    orgs: []
+    tags: []
+    enabled: true
+  subscribe:
+    type: authenticated
+    orgs: []
+    tags: []
+    enabled: true
+product: 1.0.0
