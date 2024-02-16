@@ -13,7 +13,7 @@ plans:
         value: 100/1hour
 apis:
   jsonplaceholder1.0.0:
-    $ref: ./jsonplaceholder_1.0.0.yaml
+    $ref: jsonplaceholder_1.0.0.yaml
 visibility:
   view:
     type: public
